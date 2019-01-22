@@ -102,7 +102,7 @@ class CustomFetchFromCacheMiddleware(FetchFromCacheMiddleware):
         for value in settings.CACHE_URLS:
             regex = value[0]
             if re.match(regex,request_url):
-                match+=1
+                url_match+=1
         if url_match > 0:
             request._cache_update_cache = False
             return None
