@@ -1,8 +1,10 @@
 # django_cache_project
 In this project I've created my own custom cache middleware which inherits from the default django cache middleware classes.
-use the following command to run the app on your local server
+use the following commands to install dependancies and run the app on your local server
 
 ```
+pip install < requirements.txt
+
 python manage.py runserver 
 ```
 The settings.py contains the list of urls to be cached
@@ -29,7 +31,7 @@ class functions
         for value in settings.CACHE_URLS:
             regex = value[0]
             if re.match(regex,request_url):
-                match+=1
+                url_match+=1
         if url_match > 0:
             request._cache_update_cache = False
             return None
