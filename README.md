@@ -1,10 +1,13 @@
 # django_cache_project
 use the following command to run the app on your local server
+
 '''
 python manage.py runserver
 '''
+
 In this project I've created my own custom cache middleware which inherits from the default django cache middleware classes.
 The settings.py contains the list of urls to be cached
+
 '''
 CACHE_URLS = [('^index/',60*60),('^sample/',20)]
 
@@ -15,9 +18,12 @@ CACHES = {
     }
 }
 '''
+
 The cache middleware is implemented in the cachemiddleware.py file with the following key changes to override the parent middleware 
 class functions
+
 ##checking whether a url is the list of CACHE_URLS
+
 '''
         request_url = request.get_full_path()
         url_match = 0
@@ -29,7 +35,9 @@ class functions
             request._cache_update_cache = False
             return None
 '''
+
 ##setting a cache timeout
+
 '''
       for value in settings.CACHE_URLS:
             regex = value[0]
@@ -37,5 +45,5 @@ class functions
             if re.match(regex,request_url):
                 self.timeout = value[1]
 
-        timeout = self.timeout
+      timeout = self.timeout
 '''
