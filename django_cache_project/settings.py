@@ -128,7 +128,7 @@ CACHE_URLS = [('^index/',60*60),('^sample/',20)]
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:9000',
+        'LOCATION': '127.0.0.1:8000',
     }
 }
 
