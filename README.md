@@ -32,7 +32,7 @@ class functions
             regex = value[0]
             if re.match(regex,request_url):
                 url_match+=1
-        if url_match > 0:
+        if url_match == 0:
             request._cache_update_cache = False
             return None
 ```
