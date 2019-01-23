@@ -1,5 +1,5 @@
 # django_cache_project
-In this project I've created my own custom cache middleware which inherits from the default django cache middleware classes.
+In this project I've created my own custom cache middleware which inherits from the default django cache middleware classes.<br/>
 use the following commands to install dependancies and run the app on your local server
 
 ```
@@ -11,6 +11,10 @@ The settings.py contains the list of urls to be cached
 
 ```python
 CACHE_URLS = [('^index/',60*60),('^sample/',20)]
+
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = None          
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
 
 CACHES = {
     'default': {
@@ -44,7 +48,13 @@ class functions
             regex = value[0]
             request_url = request.get_full_path()
             if re.match(regex,request_url):
-                self.timeout = value[1]
+                self.cache_timeout = value[1]
+                break;
 
-      timeout = self.timeout
+        timeout = get_max_age(response)
+        if timeout is None:
+            timeout = self.cache_timeout
+        elif timeout == 0:
+            # max-age was set to 0, don't bother caching.
+            return response
 ```
