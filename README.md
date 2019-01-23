@@ -44,9 +44,10 @@ class functions
 ### setting a cache timeout
 
 ```python
-      for value in settings.CACHE_URLS:
+    request_url = request.get_full_path()
+        
+        for value in settings.CACHE_URLS:
             regex = value[0]
-            request_url = request.get_full_path()
             if re.match(regex,request_url):
                 self.cache_timeout = value[1]
                 break;

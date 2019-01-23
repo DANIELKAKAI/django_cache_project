@@ -46,9 +46,10 @@ class CustomUpdateCacheMiddleware(UpdateCacheMiddleware):
         # Try to get the timeout from the "max-age" section of the "Cache-
         # Control" header before reverting to using the default cache_timeout
         # length.
+        request_url = request.get_full_path()
+        
         for value in settings.CACHE_URLS:
             regex = value[0]
-            request_url = request.get_full_path()
             if re.match(regex,request_url):
                 self.cache_timeout = value[1]
                 break;
