@@ -126,7 +126,7 @@ CACHE_URLS = [('^index/',60*60),('^sample/',20)]
 
 CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = None          
-CACHE_MIDDLEWARE_KEY_PREFIX = ''
+CACHE_MIDDLEWARE_KEY_PREFIX = 'cache'
 
 CACHES = {
     'default': {
