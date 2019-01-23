@@ -18,7 +18,7 @@ class CustomUpdateCacheMiddleware(UpdateCacheMiddleware):
         self.cache_alias = settings.CACHE_MIDDLEWARE_ALIAS
         self.cache = caches[self.cache_alias]
         self.get_response = get_response
-        self.timeout = 0
+    
 
     def _should_update_cache(self, request, response):
         return hasattr(request, '_cache_update_cache') and request._cache_update_cache
@@ -50,9 +50,10 @@ class CustomUpdateCacheMiddleware(UpdateCacheMiddleware):
             regex = value[0]
             request_url = request.get_full_path()
             if re.match(regex,request_url):
-                self.timeout = value[1]
+                self.cache_timeout = value[1]
+                break;
 
-        timeout = self.timeout
+        timeout = get_max_age(response)
         if timeout is None:
             timeout = self.cache_timeout
         elif timeout == 0:
