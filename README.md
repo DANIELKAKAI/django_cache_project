@@ -3,7 +3,7 @@ In this project I've created my own custom cache middleware which inherits from 
 use the following commands to install dependancies and run the app on your local server
 
 ```
-pip install < requirements.txt
+pip install -r requirements.txt
 
 python manage.py runserver 
 ```
