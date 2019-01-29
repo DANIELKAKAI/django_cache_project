@@ -19,7 +19,7 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'cache'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:8000',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
 ```
@@ -31,12 +31,12 @@ class functions
 
 ```python
         request_url = request.get_full_path()
-        url_match = 0
+        url_match = False
         for value in settings.CACHE_URLS:
             regex = value[0]
             if re.match(regex,request_url):
-                url_match+=1
-        if url_match == 0:
+                url_match = True
+        if url_match == False: #Don't check cache
             request._cache_update_cache = False
             return None
 ```

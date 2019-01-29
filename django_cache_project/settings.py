@@ -43,13 +43,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'myapp.cachemiddleware.CustomUpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'myapp.cachemiddleware.CustomFetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'myapp.cachemiddleware.CustomUpdateCacheMiddleware',
-    'myapp.cachemiddleware.CustomFetchFromCacheMiddleware'
 ]
 
 ROOT_URLCONF = 'django_cache_project.urls'
@@ -131,7 +131,7 @@ CACHE_MIDDLEWARE_KEY_PREFIX = 'cache'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:8000',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
 

@@ -100,12 +100,12 @@ class CustomFetchFromCacheMiddleware(FetchFromCacheMiddleware):
         check if current url is in the list of urls that need to be cached
         """
         request_url = request.get_full_path()
-        url_match = 0
+        url_match = False
         for value in settings.CACHE_URLS:
             regex = value[0]
             if re.match(regex,request_url):
-                url_match+=1
-        if url_match == 0:
+                url_match = True
+        if url_match == False: #Don't check cache 
             request._cache_update_cache = False
             return None
 
@@ -131,7 +131,7 @@ class CustomFetchFromCacheMiddleware(FetchFromCacheMiddleware):
 
 
 
-class CacheMiddleware(UpdateCacheMiddleware, FetchFromCacheMiddleware):
+class CacheMiddleware(CustomUpdateCacheMiddleware, CustomFetchFromCacheMiddleware):
     """
     Cache middleware that provides basic behavior for many simple sites.
 
