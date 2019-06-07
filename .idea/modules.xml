@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/django_cache_project.iml" filepath="$PROJECT_DIR$/.idea/django_cache_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/../django_graph_project/.idea/django_graph_project.iml" filepath="$PROJECT_DIR$/../django_graph_project/.idea/django_graph_project.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/kaziquest/django-app/kaziquest_v2/.idea/kaziquest_v2.iml" filepath="$USER_HOME$/Desktop/kaziquest/django-app/kaziquest_v2/.idea/kaziquest_v2.iml" />
     </modules>
   </component>
 </project>
